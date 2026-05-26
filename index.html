@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#faf8f6"/>
+<title>Dra. Fernanda Arévalo — Pago de Tratamiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf8f6;
+  --bg2:#f5f0eb;
+  --card:#ffffff;
+  --border:#e8ddd4;
+  --border2:#d4c4b5;
+  --text:#2c1f14;
+  --muted:#9e8a7a;
+  --rose:#c4748a;
+  --rose-dk:#a85d73;
+  --rose-lt:#f7eef1;
+  --rose-glow:rgba(196,116,138,0.2);
+  --gold:#b8975a;
+  --gold-lt:#fdf6e8;
+  --green:#6b9e7a;
+  --green-lt:rgba(107,158,122,0.1);
+  --red:#c47474;
+  --shadow:0 1px 4px rgba(44,31,20,0.06);
+  --shadow-md:0 4px 20px rgba(44,31,20,0.10);
+  --radius:16px;
+  --safe-top:env(safe-area-inset-top);
+  --safe-bot:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{overscroll-behavior:none;background:var(--bg);}
+body{font-family:'DM Sans',sans-serif;color:var(--text);font-size:15px;-webkit-font-smoothing:antialiased;}
+
+/* HEADER */
+.header{
+  background:rgba(250,248,246,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:calc(14px + var(--safe-top)) 20px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.logo-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;color:var(--text);letter-spacing:0.5px;}
+.logo-title{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+
+/* SCREENS */
+.screen{display:none;min-height:calc(100vh - 57px);}
+.screen.active{display:block;}
+.form-wrap{padding:20px 16px;max-width:520px;margin:0 auto;}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+
+/* FIELDS */
+.field-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:block;}
+.field-input{
+  width:100%;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  padding:13px 16px;
+  font-size:15px;
+  color:var(--text);
+  outline:none;
+  margin-bottom:14px;
+  font-family:'DM Sans',sans-serif;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.field-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-glow);}
+.field-input::placeholder{color:#c4b5a8;}
+textarea.field-input{resize:none;height:90px;}
+
+/* BUTTONS */
+.btn-main{
+  width:100%;
+  background:linear-gradient(135deg,var(--rose),var(--rose-dk));
+  color:white;border:none;
+  border-radius:12px;padding:15px;
+  font-size:14px;font-weight:600;
+  font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:all 0.2s;
+  box-shadow:0 4px 16px var(--rose-glow);
+  letter-spacing:0.5px;
+  -webkit-appearance:none;
+}
+.btn-main:active{transform:scale(0.98);opacity:0.9;}
+.btn-main:disabled{background:#d4c4b5;box-shadow:none;cursor:not-allowed;color:white;}
+.btn-ghost{
+  background:transparent;
+  border:1.5px solid var(--border2);
+  color:var(--muted);
+  border-radius:12px;padding:13px;
+  font-size:14px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  -webkit-appearance:none;font-weight:500;
+  width:100%;margin-top:10px;
+  transition:all 0.2s;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(160deg,#fdf5f0 0%,#f5ece6 50%,#fdf5f0 100%);
+  padding:40px 20px 32px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(196,116,138,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow{font-size:10px;color:var(--rose);letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--text);line-height:1.1;margin-bottom:4px;}
+.hero-specialty{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--muted);font-style:italic;margin-bottom:16px;}
+.hero-divider{width:32px;height:1px;background:var(--rose);margin:16px auto;}
+.hero-title{font-size:14px;font-weight:500;color:var(--text);letter-spacing:0.5px;margin-bottom:6px;}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.6;max-width:300px;margin:0 auto;}
+
+/* MONTO PREVIEW */
+.monto-preview{
+  background:var(--rose-lt);
+  border:1.5px solid var(--rose);
+  border-radius:12px;padding:16px;margin-bottom:14px;text-align:center;
+}
+.monto-preview-label{font-size:10px;color:var(--rose-dk);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.monto-preview-val{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--rose-dk);}
+
+/* CONFIRM */
+.confirm-top{
+  background:linear-gradient(135deg,#fdf5f0,#f5ece6);
+  border-bottom:1px solid var(--border);
+  padding:24px 20px;
+}
+.confirm-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:14px;}
+.confirm-body{padding:20px;}
+.summary-box{background:var(--bg);border-radius:10px;padding:16px;margin-bottom:14px;border:1px solid var(--border);}
+.summary-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;font-weight:600;}
+.summary-item{display:flex;justify-content:space-between;align-items:flex-start;font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);font-weight:400;gap:12px;}
+.summary-item:last-child{border:none;}
+.summary-item-key{color:var(--muted);}
+.summary-item-val{text-align:right;color:var(--text);font-size:13px;max-width:60%;}
+.summary-total{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:14px;padding:16px;
+  background:var(--rose-lt);
+  border:1.5px solid var(--rose);border-radius:12px;
+}
+.total-label{font-size:11px;color:var(--rose-dk);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.total-amt{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--rose-dk);}
+
+/* NOTIF */
+.notif-box{margin-top:14px;}
+.notif-row{display:flex;align-items:flex-start;gap:8px;padding:12px 14px;border-radius:10px;font-size:13px;margin-bottom:8px;font-weight:500;line-height:1.5;}
+.notif-ok{background:var(--green-lt);border:1.5px solid var(--green);color:var(--green);}
+
+/* PAYMENT BUTTONS */
+.btn-mp{
+  width:100%;background:#009ee3;color:white;border:none;
+  border-radius:12px;padding:15px;font-size:14px;font-weight:600;
+  font-family:'DM Sans',sans-serif;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all 0.2s;box-shadow:0 4px 12px rgba(0,158,227,0.25);
+  -webkit-appearance:none;
+}
+.btn-mp:active{transform:scale(0.97);}
+.btn-mp:disabled{background:#d4c4b5;box-shadow:none;cursor:not-allowed;}
+.btn-wa{
+  width:100%;background:#25D366;color:white;border:none;
+  border-radius:12px;padding:14px;font-size:14px;font-weight:600;
+  font-family:'DM Sans',sans-serif;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all 0.2s;-webkit-appearance:none;margin-top:10px;text-decoration:none;
+  box-shadow:0 4px 12px rgba(37,211,102,0.2);
+}
+.btn-wa:active{transform:scale(0.97);}
+
+/* STATUS PILL */
+.status-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(196,116,138,0.15);color:var(--rose-dk);font-size:10px;font-weight:600;padding:5px 12px;border-radius:20px;margin-top:10px;letter-spacing:1px;text-transform:uppercase;}
+.pulse-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* OVERLAY */
+.overlay{display:none;position:fixed;inset:0;background:rgba(250,248,246,0.92);z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:14px;backdrop-filter:blur(8px);}
+.overlay.show{display:flex;}
+.spin{width:36px;height:36px;border:2px solid var(--border2);border-top-color:var(--rose);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay-text{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:0.5px;}
+.toast{position:fixed;bottom:calc(24px + var(--safe-bot));left:50%;transform:translateX(-50%);background:var(--text);color:white;font-size:13px;padding:10px 20px;border-radius:24px;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:400;white-space:nowrap;font-weight:500;box-shadow:var(--shadow-md);}
+.toast.show{opacity:1;}
+.toast.err{background:var(--red);color:white;}
+
+/* TRATAMIENTOS PILLS */
+.tratamiento-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.tratamiento-pill{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:20px;padding:7px 14px;
+  font-size:13px;color:var(--muted);cursor:pointer;
+  transition:all 0.2s;font-weight:500;
+  -webkit-appearance:none;
+}
+.tratamiento-pill.selected{background:var(--rose-lt);border-color:var(--rose);color:var(--rose-dk);font-weight:600;}
+.tratamiento-pill:active{transform:scale(0.97);}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo-name">Dra. Fernanda Arévalo</div>
+    <div class="logo-title">Medicina Estética · Zapopan</div>
+  </div>
+  <div style="font-size:11px;color:var(--muted);font-weight:500;">🔒 Pago seguro</div>
+</div>
+
+<!-- SCREEN 1: DATOS -->
+<div class="screen active" id="s-pedido">
+  <div class="hero">
+    <div class="hero-eyebrow">Pago de tratamiento</div>
+    <div class="hero-name">Dra. Fernanda<br>Arévalo</div>
+    <div class="hero-specialty">Medicina Estética</div>
+    <div class="hero-divider"></div>
+    <div class="hero-title">Completa tu pago de forma segura</div>
+    <div class="hero-sub">Ingresa los detalles de tu tratamiento y realiza tu pago en segundos</div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="card">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;margin-bottom:4px;">Datos del pago</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:20px;">Completa la información de tu tratamiento</div>
+
+      <label class="field-label">Nombre completo</label>
+      <input class="field-input" id="nombre" type="text" placeholder="Tu nombre completo" autocomplete="name"/>
+
+      <label class="field-label">Correo electrónico</label>
+      <input class="field-input" id="email" type="email" placeholder="tu@correo.com" inputmode="email" autocomplete="email"/>
+
+      <label class="field-label">Teléfono</label>
+      <input class="field-input" id="telefono" type="tel" placeholder="+52 33 1234 5678" inputmode="tel"/>
+
+      <label class="field-label">Tratamiento</label>
+      <div class="tratamiento-grid" id="tratamiento-grid">
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Armonización Facial')">Armonización Facial</button>
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Bioestimuladores')">Bioestimuladores</button>
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Rinomodelación')">Rinomodelación</button>
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Tratamiento de Labios')">Tratamiento de Labios</button>
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Toxina Botulínica')">Toxina Botulínica</button>
+        <button class="tratamiento-pill" onclick="seleccionarTratamiento(this,'Otro')">Otro</button>
+      </div>
+      <input class="field-input" id="concepto" type="text" placeholder="Especifica el tratamiento o agrégalo aquí"/>
+
+      <label class="field-label">Monto a pagar (MXN)</label>
+      <div style="position:relative;margin-bottom:14px;">
+        <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--muted);font-weight:500;">$</span>
+        <input class="field-input" id="monto" type="number" placeholder="0.00" inputmode="decimal" style="padding-left:32px;margin-bottom:0;" oninput="actualizarMonto()"/>
+      </div>
+
+      <div id="monto-preview" style="display:none;" class="monto-preview">
+        <div class="monto-preview-label">Total a pagar</div>
+        <div class="monto-preview-val" id="monto-display">$0</div>
+      </div>
+
+      <button class="btn-main" onclick="irAPago()">Ver resumen y continuar →</button>
+    </div>
+
+    <!-- INFO TRANSFERENCIA -->
+    <div class="card">
+      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:12px;">🏦 Pago por transferencia</div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;"><span style="color:var(--muted);">Titular</span><span style="font-weight:600;">Fernanda Arévalo</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;"><span style="color:var(--muted);">Ubicación</span><span style="font-weight:500;text-align:right;max-width:60%;font-size:12px;">Av. Naciones Unidas 5433 int. 9, Jardines Universidad, Zapopan</span></div>
+      <div style="margin-top:12px;padding:10px 12px;background:var(--rose-lt);border-radius:8px;font-size:12px;color:var(--rose-dk);">
+        💡 Si realizas transferencia, envía tu comprobante por WhatsApp con tu nombre y el tratamiento a pagar.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: CONFIRMACIÓN -->
+<div class="screen" id="s-confirm">
+  <div class="form-wrap" style="padding-top:16px;padding-bottom:40px;">
+    <div class="confirm-card">
+      <div class="confirm-top">
+        <div style="font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600;" id="conf-num">PAGO #—</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--text);margin-bottom:3px;">Pago generado ✓</div>
+        <div style="font-size:13px;color:var(--muted);">Completa tu pago para confirmar tu cita</div>
+        <div class="status-pill"><div class="pulse-dot"></div>Pendiente de pago</div>
+      </div>
+      <div class="confirm-body">
+        <div class="summary-box">
+          <div class="summary-label">Resumen</div>
+          <div class="summary-item"><span class="summary-item-key">👤 Paciente</span><span class="summary-item-val" id="conf-nombre"></span></div>
+          <div class="summary-item"><span class="summary-item-key">✨ Tratamiento</span><span class="summary-item-val" id="conf-concepto"></span></div>
+          <div class="summary-item"><span class="summary-item-key">📧 Correo</span><span class="summary-item-val" id="conf-email"></span></div>
+        </div>
+        <div class="summary-total">
+          <span class="total-label">Total a pagar</span>
+          <span class="total-amt" id="conf-monto">$0</span>
+        </div>
+
+        <div class="notif-box" id="notif-box"></div>
+
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+          <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Elige cómo pagar</div>
+          <button class="btn-mp" id="btn-mp" onclick="pagarConMP()">💳 Pagar con Mercado Pago</button>
+          <div style="text-align:center;font-size:11px;color:var(--muted);margin:8px 0;">Tarjeta · SPEI · OXXO · Mercado Pago</div>
+          <a id="btn-wa" href="#" target="_blank" class="btn-wa">💬 Enviar comprobante por WhatsApp</a>
+        </div>
+
+        <div style="margin-top:16px;text-align:center;font-size:12px;color:var(--muted);line-height:1.6;font-style:italic;">
+          "Tu esencia, con un toque más tuyo."<br>
+          <span style="font-weight:500;">Dra. Fernanda Arévalo</span>
+        </div>
+      </div>
+    </div>
+    <button class="btn-ghost" onclick="goTo('s-pedido')">← Regresar</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"><div class="spin"></div><div class="overlay-text">Registrando tu pago...</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA_DRA = '523312345678'; // <-- CAMBIAR AL WHATSAPP DE LA DRA
+const state = { nombre:'', email:'', telefono:'', concepto:'', monto:0, orderId:'' };
+
+function seleccionarTratamiento(btn, nombre){
+  document.querySelectorAll('.tratamiento-pill').forEach(p=>p.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('concepto').value = nombre === 'Otro' ? '' : nombre;
+  if(nombre === 'Otro') document.getElementById('concepto').focus();
+}
+
+function actualizarMonto(){
+  const v = parseFloat(document.getElementById('monto').value);
+  const preview = document.getElementById('monto-preview');
+  const display = document.getElementById('monto-display');
+  if(v > 0){
+    preview.style.display = 'block';
+    display.textContent = '$' + v.toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
+function irAPago(){
+  const nombre = document.getElementById('nombre').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const concepto = document.getElementById('concepto').value.trim();
+  const monto = parseFloat(document.getElementById('monto').value);
+  if(!nombre || !email){ toast('Completa nombre y correo', 'err'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('Correo no válido', 'err'); return; }
+  if(!concepto){ toast('Selecciona o escribe el tratamiento', 'err'); return; }
+  if(!monto || monto <= 0){ toast('Ingresa el monto a pagar', 'err'); return; }
+  state.nombre = nombre;
+  state.email = email;
+  state.telefono = document.getElementById('telefono').value;
+  state.concepto = concepto;
+  state.monto = monto;
+  state.orderId = 'FA-' + Math.floor(Math.random()*90000+10000);
+  document.getElementById('conf-num').textContent = 'PAGO ' + state.orderId;
+  document.getElementById('conf-nombre').textContent = state.nombre;
+  document.getElementById('conf-concepto').textContent = state.concepto;
+  document.getElementById('conf-email').textContent = state.email;
+  document.getElementById('conf-monto').textContent = '$' + state.monto.toLocaleString('es-MX', {minimumFractionDigits:2});
+  const waMsg = encodeURIComponent(
+    `✨ *PAGO DE TRATAMIENTO — ${state.orderId}*\n` +
+    `*Paciente:* ${state.nombre}\n` +
+    `*Email:* ${state.email}\n` +
+    `*Tel:* ${state.telefono||'—'}\n` +
+    `*Tratamiento:* ${state.concepto}\n` +
+    `*TOTAL: $${state.monto.toLocaleString('es-MX')} MXN*\n\n` +
+    `Adjunto mi comprobante de pago. ✅`
+  );
+  document.getElementById('btn-wa').href = `https://wa.me/${WA_DRA}?text=${waMsg}`;
+  goTo('s-confirm');
+}
+
+async function pagarConMP(){
+  const btn = document.getElementById('btn-mp');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Generando link de pago...';
+  try{
+    const res = await fetch('/.netlify/functions/crear-pago',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        total: Math.round(state.monto),
+        descripcion: 'Dra. Fernanda — ' + state.concepto + ' — ' + state.orderId,
+        pedido_id: state.orderId,
+        email: state.email,
+      })
+    });
+    const data = await res.json();
+    if(data.url){ window.location.href = data.url; }
+    else throw new Error('Sin URL');
+  }catch(e){
+    btn.disabled = false;
+    btn.innerHTML = '💳 Pagar con Mercado Pago';
+    toast('Error al generar el pago — usa WhatsApp', 'err');
+  }
+}
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toast(msg,type=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast'+(type==='err'?' err':'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>
